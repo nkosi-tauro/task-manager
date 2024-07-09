@@ -15,3 +15,13 @@ export async function createUser(input: CreationAttributes<User>) {
     throw new Error(`Error creating user: ${error}` );
   }
 }
+
+export async function getAllUsers() {
+  try {
+    const users = await User.findAll();
+    return users;
+  } 
+  catch (error) {
+    throw new Error(`Error getting users: ${error}`);
+  }
+}
