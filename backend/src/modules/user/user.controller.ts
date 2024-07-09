@@ -5,7 +5,11 @@ export async function createUserHandler(request: FastifyRequest, reply: FastifyR
   try {
     const user = await createUser(request.body as {email: string, password: string});
     return reply.code(201).send(user);
-  } catch (error) {
-    return reply.code(500).send({ error: "An error occurred while creating the user." });
+  } catch (error : any) {
+    if (error.message.includes("Validation error")) {
+      return reply.code(400).send({ error: "User already exists" });
+    } else {
+      return reply.code(500).send({ error: error.message });
+    }
   }
 }
