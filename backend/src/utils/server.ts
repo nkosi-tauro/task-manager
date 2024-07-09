@@ -1,9 +1,11 @@
 import fastify from "fastify";
 import sequelize from "../database/connection";
+import { logger } from "./logger";
 
 export async function createServer() {
   const server = fastify({
-    logger: true
+    logger,
+    
   });
 
   //dummy Health check endpoint (update)
