@@ -1,15 +1,20 @@
 import fastify from "fastify";
-import sequelize from "../database/connection";
 import { logger } from "./logger";
+import userRoutes from "../modules/user/user.route";
+import fastifyPrintRoutes from "fastify-print-routes";
 
 export async function createServer() {
   const server = fastify({
     logger,
     
   });
+  // For Testing
+  await server.register(fastifyPrintRoutes)
 
-  //dummy Health check endpoint (update)
-  server.get('/health', async (request, reply) => {
+  server.register(userRoutes, { prefix: "/api/users" });
+
+  //Health check endpoint (update)
+  server.get('/health', async () => {
     return { status: 'ok' };
   });
 
