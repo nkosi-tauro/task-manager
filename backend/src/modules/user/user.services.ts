@@ -25,3 +25,13 @@ export async function getAllUsers() {
     throw new Error(`Error getting users: ${error}`);
   }
 }
+
+export async function findUserByEmail(email: string) {
+  try {
+    const user = await User.findOne({ where: { email } });
+    return user;
+  } 
+  catch (error) {
+    throw new Error(`Error finding user: ${error}`);
+  }
+}
