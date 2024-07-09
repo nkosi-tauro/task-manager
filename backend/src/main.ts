@@ -17,7 +17,6 @@ async function main() {
   const app = await createServer();
   try{
     app.listen({
-      host: "0.0.0.0",
       port: 3000,
     });
   }
