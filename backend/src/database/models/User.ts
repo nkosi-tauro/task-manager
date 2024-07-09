@@ -44,4 +44,10 @@ export class User extends Model {
 
   @HasMany(() => Task)
   declare tasks: Task[];
+
+  toJSON(){
+    const values = {...this.get()};
+    delete values.password;
+    return values;
+  }
 }
