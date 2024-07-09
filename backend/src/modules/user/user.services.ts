@@ -1,11 +1,17 @@
 import { User } from "../../database/models/User";
 import { CreationAttributes } from 'sequelize';
-interface CreateUserInput {
-  email: string;
-  password: string;
-}
+import bcrypt from 'bcrypt';
 
-export async function CreateUser(input: CreationAttributes<User>) {
-  const user = await User.create(input);
-  return user;
+const saltRounds = 10;
+
+export async function createUser(input: CreationAttributes<User>) {
+  try {
+    const salt = await bcrypt.genSalt(saltRounds);
+    const hash = await bcrypt.hash(input.password, salt);
+    const user = await User.create({ ...input, password: hash });
+    return user;
+  } 
+  catch (error) {
+    throw new Error(`Error creating user: ${error}` );
+  }
 }
