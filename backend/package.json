@@ -12,7 +12,9 @@
   "description": "",
   "dependencies": {
     "@fastify/jwt": "^8.0.1",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^20.14.10",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.5",
     "fastify": "^4.28.1",
     "fastify-print-routes": "^3.2.0",
