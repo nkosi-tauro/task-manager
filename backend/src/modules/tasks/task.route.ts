@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
-import { createTaskHandler, getAllUserTasksHandler, getAllTasksHandler, getTaskByIdHandler, updateTaskHandler, deleteTaskHandler, assignTaskHandler } from "./task.controller";
-import { assignTaskSchema, createTaskSchema, updateTaskSchema } from "./task.schema";
+import { createTaskHandler, getAllUserTasksHandler, getAllTasksHandler, getTaskByIdHandler, updateTaskHandler, deleteTaskHandler, assignTaskHandler, updateTaskStatusHandler } from "./task.controller";
+import { assignTaskSchema, createTaskSchema, updateTaskSchema, updateTaskStatusSchema } from "./task.schema";
 
 async function taskRoutes(server: FastifyInstance) {
 
@@ -47,6 +47,14 @@ async function taskRoutes(server: FastifyInstance) {
     },
     onRequest: [server.authenticate],
   }, assignTaskHandler)
+
+  //update task status field
+  server.put("/update-status/:id", {
+    schema: {
+      body: updateTaskStatusSchema
+    },
+    onRequest: [server.authenticate],
+  }, updateTaskStatusHandler)
 }
 
 export default taskRoutes

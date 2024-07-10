@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { createTask, getAllTasksBelongingToUser, getAllTasks, getTaskById, updateTask, deleteTask, assignTask} from "./task.services";
+import { createTask, getAllTasksBelongingToUser, getAllTasks, getTaskById, updateTask, deleteTask, assignTask, updateTaskStatus } from "./task.services";
 
 interface RequestUser {
   id: string,
@@ -82,6 +82,17 @@ export async function assignTaskHandler(request: FastifyRequest, reply: FastifyR
     return reply.code(200).send(updatedTask);
   } catch (error) {
     return reply.code(500).send({ error: "Failed to assign task" });
+  }
+}
+
+export async function updateTaskStatusHandler(request: FastifyRequest, reply: FastifyReply) {
+  try {
+    const params = request.params as { id: string };
+    const { status } = request.body as { status: string };
+    const updatedTask = await updateTaskStatus(params.id, status);
+    return reply.code(200).send(updatedTask);
+  } catch (error) {
+    return reply.code(500).send({ error: "Failed to update task status" });
   }
 }
 

@@ -53,3 +53,13 @@ export const assignTaskSchema = {
     },
   },
 }
+
+export const updateTaskStatusSchema = {
+  type: 'object',
+  required: ['status'],
+  properties: {
+    status: {
+      type: 'string',
+    },
+  },
+}

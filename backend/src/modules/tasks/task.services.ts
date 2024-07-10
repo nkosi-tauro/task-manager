@@ -74,3 +74,15 @@ export async function assignTask(taskId: string, userId: string) {
     throw new Error(`Error assigning task: ${error}`);
   }
 }
+
+export async function updateTaskStatus(taskId: string, status: string) {
+  try {
+    const task = await Task.findByPk(taskId);
+    if (!task) throw new Error("Task not found");
+    task.status = status;
+    await task.save();
+    return task;
+  } catch (error) {
+    throw new Error(`Error updating task status: ${error}`);
+  }
+}
