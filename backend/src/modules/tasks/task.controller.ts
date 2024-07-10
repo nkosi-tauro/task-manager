@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { createTask, getAllTasksBelongingToUser, getAllTasks, getTaskById, updateTask, deleteTask, assignTask } from "./task.services";
+import { createTask, getAllTasksBelongingToUser, getAllTasks, getTaskById, updateTask, deleteTask, assignTask} from "./task.services";
 
 interface RequestUser {
   id: string,
@@ -43,8 +43,8 @@ export async function getAllTasksHandler(request: FastifyRequest, reply: Fastify
 
 export async function getTaskByIdHandler(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const params = request.params
-    const task = await getTaskById((params as any).id);
+    const params = request.params as { id: string };
+    const task = await getTaskById(params.id);
     return reply.code(200).send(task);
   }
   catch (error) {
@@ -54,9 +54,9 @@ export async function getTaskByIdHandler(request: FastifyRequest, reply: Fastify
 
 export async function updateTaskHandler(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const params = request.params
+    const params = request.params as { id: string };
     const updateData = request.body as { title: string, description: string, dueDate: Date, priority: string, status: string };
-    const updatedTask = await updateTask((params as any).id, updateData);
+    const updatedTask = await updateTask(params.id, updateData);
     return reply.code(200).send(updatedTask);
   } catch (error) {
     console.log(error)
@@ -66,8 +66,8 @@ export async function updateTaskHandler(request: FastifyRequest, reply: FastifyR
 
 export async function deleteTaskHandler(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const params = request.params
-    await deleteTask((params as any).id);
+    const params = request.params as { id: string };
+    await deleteTask(params.id);
     return reply.code(204).send({ message: "Task deleted successfully" });
   } catch (error) {
     return reply.code(500).send({ error: "Failed to delete task" });
