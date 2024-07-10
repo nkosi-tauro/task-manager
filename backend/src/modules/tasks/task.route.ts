@@ -1,5 +1,5 @@
 import { FastifyInstance } from "fastify";
-import { createTaskHandler, getAllUserTasksHandler, getAllTasksHandler } from "./task.controller";
+import { createTaskHandler, getAllUserTasksHandler, getAllTasksHandler, getTaskByIdHandler, updateTaskHandler } from "./task.controller";
 import { createTaskSchema } from "./task.schema";
 
 async function taskRoutes(server: FastifyInstance) {
@@ -21,6 +21,16 @@ async function taskRoutes(server: FastifyInstance) {
   server.get("/all", {
     onRequest: [server.authenticate],
   }, getAllTasksHandler)
+
+  //get task by id
+  server.get("/:id", {
+    onRequest: [server.authenticate],
+  }, getTaskByIdHandler)
+
+  //update task by id
+  server.put("/update/:id", {
+    onRequest: [server.authenticate],
+  }, updateTaskHandler)
 }
 
 export default taskRoutes

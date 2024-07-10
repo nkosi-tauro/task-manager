@@ -31,3 +31,24 @@ export async function getAllTasks(){
     throw new Error(`Error getting tasks: ${error}`);
   }
 }
+
+export async function getTaskById(taskId: string) {
+  try {
+    const task = await Task.findOne({ where: { id: taskId } });
+    return task;
+  } 
+  catch (error) {
+    throw new Error(`Error getting task: ${error}`);
+  }
+}
+
+export async function updateTask(taskId: string, updateData: Partial<Task>) {
+  try {
+    const task = await Task.findByPk(taskId);
+    if (!task) throw new Error("Task not found");
+    const updatedTask = await task.update(updateData);
+    return updatedTask;
+  } catch (error) {
+    throw new Error(`Error updating task: ${error}`);
+  }
+}
