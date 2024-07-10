@@ -52,3 +52,13 @@ export async function updateTask(taskId: string, updateData: Partial<Task>) {
     throw new Error(`Error updating task: ${error}`);
   }
 }
+
+export async function deleteTask(taskId: string) {
+  try {
+    const task = await Task.findByPk(taskId);
+    if (!task) throw new Error("Task not found");
+    await task.destroy();
+  } catch (error) {
+    throw new Error(`Error deleting task: ${error}`);
+  }
+}
