@@ -23,7 +23,7 @@ export const createTaskSchema = {
 
 export const updateTaskSchema = {
   type: 'object',
-  // required: ['title'],
+  required: ['title'],
   properties: {
     title: {
       type: 'string',
