@@ -3,6 +3,7 @@ import { logger } from "./logger";
 import userRoutes from "../modules/user/user.route";
 import fastifyPrintRoutes from "fastify-print-routes";
 import fastifyJwt from "@fastify/jwt";
+import taskRoutes  from "../modules/tasks/task.route";
 
 export async function createServer() {
   const server = fastify({
@@ -17,14 +18,21 @@ export async function createServer() {
   });
   server.decorate("authenticate", async (request: FastifyRequest, reply: FastifyReply) => {
     try {
-      await request.jwtVerify();
+      const token = request.headers.authorization?.split(' ')[1];
+      if (!token) {
+        return reply.code(401).send({ error: "No token provided" });
+      }
+      const decoded = await request.jwtVerify();
+      // set req user to the decoded token data
+      request.user = decoded;
     } catch (err) {
       reply.send(err);
     }
   });
 
-  //User routes
+  //Routes
   server.register(userRoutes, { prefix: "/api/users" });
+  server.register(taskRoutes, { prefix: "/api/tasks" });
   
   //Dummy Health check endpoint 
   server.get('/health', async () => {
