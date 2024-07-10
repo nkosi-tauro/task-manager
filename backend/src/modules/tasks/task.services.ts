@@ -21,3 +21,13 @@ export async function getAllTasksBelongingToUser(userId: string) {
     throw new Error(`Error getting tasks: ${error}`);
   }
 }
+
+export async function getAllTasks(){
+  try {
+    const tasks = Task.findAll();
+    return tasks;
+  }
+  catch (error) {
+    throw new Error(`Error getting tasks: ${error}`);
+  }
+}

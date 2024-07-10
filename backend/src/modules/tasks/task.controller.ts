@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { createTask, getAllTasksBelongingToUser } from "./task.services";
+import { createTask, getAllTasksBelongingToUser, getAllTasks } from "./task.services";
 
 interface RequestUser {
   id: string,
@@ -29,3 +29,14 @@ export async function getAllUserTasksHandler(request: FastifyRequest, reply: Fas
     return reply.code(404).send({ error: "Tasks not found" });
   }
 }
+
+export async function getAllTasksHandler(request: FastifyRequest, reply: FastifyReply) {
+  try {
+    const tasks = await getAllTasks();
+    return reply.code(200).send(tasks);
+  }
+  catch (error) {
+    return reply.code(404).send({ error: "Tasks not found" });
+  }
+}
+
