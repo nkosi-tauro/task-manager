@@ -59,6 +59,7 @@ A Task Management backend application that allows authenticated users to Create,
 The following tools were used in this project:
 
 - [Fastify](https://fastify.dev/)
+- [Sequelize ORM](https://sequelize.org/)
 - [Node.js](https://nodejs.org/en/)
 - [Docker Compose](https://docs.docker.com/compose/)
 - [MySQL](https://www.mysql.com/)
