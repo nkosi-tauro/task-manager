@@ -62,3 +62,15 @@ export async function deleteTask(taskId: string) {
     throw new Error(`Error deleting task: ${error}`);
   }
 }
+
+export async function assignTask(taskId: string, userId: string) {
+  try {
+    const task = await Task.findByPk(taskId);
+    if (!task) throw new Error("Task not found");
+    task.userId = userId;
+    await task.save();
+    return task;
+  } catch (error) {
+    throw new Error(`Error assigning task: ${error}`);
+  }
+}

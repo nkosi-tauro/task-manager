@@ -1,5 +1,5 @@
 import { FastifyRequest, FastifyReply } from "fastify";
-import { createTask, getAllTasksBelongingToUser, getAllTasks, getTaskById, updateTask, deleteTask } from "./task.services";
+import { createTask, getAllTasksBelongingToUser, getAllTasks, getTaskById, updateTask, deleteTask, assignTask } from "./task.services";
 
 interface RequestUser {
   id: string,
@@ -71,6 +71,17 @@ export async function deleteTaskHandler(request: FastifyRequest, reply: FastifyR
     return reply.code(204).send({ message: "Task deleted successfully" });
   } catch (error) {
     return reply.code(500).send({ error: "Failed to delete task" });
+  }
+}
+
+export async function assignTaskHandler(request: FastifyRequest, reply: FastifyReply) {
+  try {
+    const params = request.params as { id: string };
+    const { userId } = request.body as { userId: string };
+    const updatedTask = await assignTask(params.id, userId);
+    return reply.code(200).send(updatedTask);
+  } catch (error) {
+    return reply.code(500).send({ error: "Failed to assign task" });
   }
 }
 

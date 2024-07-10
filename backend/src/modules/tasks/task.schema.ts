@@ -43,3 +43,13 @@ export const updateTaskSchema = {
     },
   },
 }
+
+export const assignTaskSchema = {
+  type: 'object',
+  required: ['userId'],
+  properties: {
+    userId: {
+      type: 'string',
+    },
+  },
+}

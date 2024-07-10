@@ -1,6 +1,6 @@
 import { FastifyInstance } from "fastify";
-import { createTaskHandler, getAllUserTasksHandler, getAllTasksHandler, getTaskByIdHandler, updateTaskHandler, deleteTaskHandler } from "./task.controller";
-import { createTaskSchema } from "./task.schema";
+import { createTaskHandler, getAllUserTasksHandler, getAllTasksHandler, getTaskByIdHandler, updateTaskHandler, deleteTaskHandler, assignTaskHandler } from "./task.controller";
+import { assignTaskSchema, createTaskSchema } from "./task.schema";
 
 async function taskRoutes(server: FastifyInstance) {
 
@@ -36,6 +36,14 @@ async function taskRoutes(server: FastifyInstance) {
   server.delete("/delete/:id", {
     onRequest: [server.authenticate],
   }, deleteTaskHandler)
+
+  //assign task to user
+  server.put("/assign/:id", {
+    schema: {
+      body: assignTaskSchema
+    },
+    onRequest: [server.authenticate],
+  }, assignTaskHandler)
 }
 
 export default taskRoutes
