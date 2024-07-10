@@ -48,6 +48,12 @@ export class Task extends Model {
   })
   declare priority: string;
 
+  @Column({
+    type: DataType.STRING,
+    allowNull: false,
+  })
+  declare status: string;
+
   @CreatedAt
   declare createdAt: Date;
 
