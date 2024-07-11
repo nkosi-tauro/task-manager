@@ -118,8 +118,12 @@ Or View the "<b>Munch Backend.postman_collection.json</b>" file in the root dire
 
 ## Testing#
 
-After Setting up the project you can run tests from within the backend directory.
+After setting up the Project:
+To Run Tests you can startup just the database or else the ports will conflict.
+
 ```bash
+# Database Startup
+$ docker compose up db
 
 # Access
 $ cd backend
