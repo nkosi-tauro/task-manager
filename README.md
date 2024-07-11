@@ -116,6 +116,18 @@ Download the Postman Collection and Import it.
 <a target="_blank" href="./Munch Backend.postman_collection.json" download="Postman.json">Download Collection</a> 
 Or View the "<b>Munch Backend.postman_collection.json</b>" file in the root directory. 
 
+## Testing#
+
+After Setting up the project you can run tests from within the backend directory.
+```bash
+
+# Access
+$ cd backend
+
+# run tests
+$ npm test
+```
+
 
 ## :memo: License ##
 
