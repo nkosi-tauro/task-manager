@@ -1,0 +1,547 @@
+{
+	"info": {
+		"_postman_id": "9f67b7c4-2aae-4aa2-bdf1-81456b8b652b",
+		"name": "Munch Backend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16675216"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "Create User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check if the response code indicates a successful user creation\r",
+									"if (pm.response.code === 201) {\r",
+									"    // Clear the JWT_Token variable\r",
+									"    pm.collectionVariables.unset(\"jwt_token\");\r",
+									"    console.log(\"User created successfully. JWT_Token has been removed. Please log in again.\");\r",
+									"} else {\r",
+									"    console.log(\"User creation failed. JWT_Token has not been removed.\");\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // update email number for new user\r\n    \"email\": \"{{email}}+2@jelly.com\",\r\n    \"password\": \"notjimmy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Users",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/users",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "User Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Check if the request was successful\r",
+									"if (pm.response.code === 200) {\r",
+									"  // Parse the response to get the token\r",
+									"  const response = pm.response.json();\r",
+									"  const token = response.token;\r",
+									"  \r",
+									"  // Set the token as an collectionVariable variable\r",
+									"  pm.collectionVariables.set('jwt_token', token);\r",
+									"}\r",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    // update email number for new user\r\n    \"email\": \"{{email}}+2@jelly.com\",\r\n    \"password\": \"notjimmy\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/users/login",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Tasks",
+			"item": [
+				{
+					"name": "Create Task",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"title\": \"New Task 32b3\",\r\n  \"description\": \"This is a new task\",\r\n  \"dueDate\": \"2024-08-01T00:00:00Z\",\r\n  \"priority\": \"High\",\r\n  \"status\": \"Pending\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Tasks for User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/tasks",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task By ID",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "//Update the fields as needed (make sure to replace url id with a valid Task ID)\r\n{\r\n  \"title\": \"New Task 32b32e\"\r\n//   \"description\": \"This is not new task\",\r\n//   \"dueDate\": \"2024-08-01T00:00:00Z\",\r\n//   \"priority\": \"High\",\r\n//   \"status\": \"Pending\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/update/ab4cade4-5ad7-4245-bdf5-ee8aaea2e1d4",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"update",
+								"ab4cade4-5ad7-4245-bdf5-ee8aaea2e1d4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Task To Another User",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "//make sure to update user id and task id in params to valid ones\r\n{\r\n    \"userId\": \"714d8ab9-f25d-433f-805d-846891a660a2\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/assign/2744777c-2ea8-44d0-ad16-3c598a11d156",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"assign",
+								"2744777c-2ea8-44d0-ad16-3c598a11d156"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Task Status",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "//Update the field as needed (make sure to replace url id with a valid Task ID)\r\n{\r\n    \"status\": \"Open\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/tasks/update-status/40c1857a-0501-48de-a667-f63562fd4323",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"update-status",
+								"40c1857a-0501-48de-a667-f63562fd4323"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Tasks (Filter Here)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/tasks/all?status=open&sortBy=dueDate&sortOrder=ASC",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"all"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "open",
+									"description": "open, pending, oe any other status you created the Task with"
+								},
+								{
+									"key": "sortBy",
+									"value": "dueDate"
+								},
+								{
+									"key": "sortOrder",
+									"value": "ASC",
+									"description": "use ASC or DESC"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Task By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/tasks/",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Task By ID",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/tasks/delete/053a2e1f-ff14-444f-9a5e-80b22b4975fe",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"tasks",
+								"delete",
+								"053a2e1f-ff14-444f-9a5e-80b22b4975fe"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "Perform CRUD actions on Tasks.  \nNote, this requires an authenticated user.\n\nThe JWT Token is provided automatically once you login and you will be authenticated.\n\nPlease note if you Create a new user, the JWT Token is cleared and you will need to login again, either as new or old user.",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Labels",
+			"item": [
+				{
+					"name": "Add Label",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "//provide label name\r\n{\r\n  \"name\": \"urgent2\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{host}}/api/labels/addLabel",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"labels",
+								"addLabel"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Labels",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{host}}/api/labels",
+							"host": [
+								"{{host}}"
+							],
+							"path": [
+								"api",
+								"labels"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Label To Task",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				}
+			],
+			"description": "Create Labels here that you can then associate with a Task",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{jwt_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "healthCheck",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}/health",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"health"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "http://localhost:3000",
+			"type": "string"
+		},
+		{
+			"key": "email",
+			"value": "jimmy",
+			"type": "string"
+		},
+		{
+			"key": "password",
+			"value": "notjimmy",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": ""
+		}
+	]
+}

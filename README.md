@@ -52,6 +52,8 @@ A Task Management backend application that allows authenticated users to Create,
 
 :heavy_check_mark: User Authentication with [fastify/jwt](https://github.com/fastify/fastify-jwt);\
 :heavy_check_mark: CRUD Tasks;\
+:heavy_check_mark: Filter & Sort Tasks;\
+:heavy_check_mark: Add Labels To Tasks;
 
 
 ## :rocket: Technologies ##
@@ -110,7 +112,10 @@ $ See Postman Section below
 
 ### Postman
 
-A Postman Collection will be added soon.
+Download the Postman Collection and Import it.  
+<a target="_blank" href="./Munch Backend.postman_collection.json" download="Postman.json">Download Collection</a> 
+Or View the "<b>Munch Backend.postman_collection.json</b>" file in the root directory. 
+
 
 ## :memo: License ##
 
