@@ -7,66 +7,66 @@ import {
   UpdatedAt,
   PrimaryKey,
   BelongsTo,
-  ForeignKey,
-} from "sequelize-typescript";
-import { User } from "./User";
+  ForeignKey
+} from 'sequelize-typescript'
+import { User } from './User'
 
 @Table({
   timestamps: true,
-  tableName: "tasks",
-  modelName: "Task",
+  tableName: 'tasks',
+  modelName: 'Task'
 })
 export class Task extends Model {
   @PrimaryKey
   @Column({
     type: DataType.UUID,
-    defaultValue: DataType.UUIDV4,
+    defaultValue: DataType.UUIDV4
   })
-  declare id: string;
+  declare id: string
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: false
   })
-  declare title: string;
+  declare title: string
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: false
   })
-  declare description: string;
+  declare description: string
 
   @Column({
     type: DataType.DATE,
-    allowNull: false,
+    allowNull: false
   })
-  declare dueDate: Date;
+  declare dueDate: Date
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: false
   })
-  declare priority: string;
+  declare priority: string
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: false
   })
-  declare status: string;
+  declare status: string
 
   @CreatedAt
-  declare createdAt: Date;
+  declare createdAt: Date
 
   @UpdatedAt
-  declare updatedAt: Date;
+  declare updatedAt: Date
 
   @ForeignKey(() => User)
   @Column({
     type: DataType.UUID,
-    allowNull: false,
+    allowNull: false
   })
-  declare userId: string;
+  declare userId: string
 
   @BelongsTo(() => User)
-  declare owner: User;
+  declare owner: User
 }

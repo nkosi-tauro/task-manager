@@ -4,13 +4,13 @@ export const createUserSchema = {
   properties: {
     email: {
       type: 'string',
-      format: 'email',
+      format: 'email'
     },
     password: {
       type: 'string',
-      minLength: 8,
-    },
-  },
+      minLength: 8
+    }
+  }
 }
 
 export const loginSchema = {
@@ -19,11 +19,11 @@ export const loginSchema = {
   properties: {
     email: {
       type: 'string',
-      format: 'email',
+      format: 'email'
     },
     password: {
       type: 'string',
-      minLength: 8,
-    },
-  },
+      minLength: 8
+    }
+  }
 }

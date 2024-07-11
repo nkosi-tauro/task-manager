@@ -3,22 +3,22 @@ export const createTaskSchema = {
   required: ['title', 'description', 'dueDate', 'priority', 'status'],
   properties: {
     title: {
-      type: 'string',
+      type: 'string'
     },
     description: {
-      type: 'string',
+      type: 'string'
     },
     dueDate: {
       type: 'string',
-      format: 'date-time',
+      format: 'date-time'
     },
     priority: {
-      type: 'string',
+      type: 'string'
     },
     status: {
-      type: 'string',
-    },
-  },
+      type: 'string'
+    }
+  }
 }
 
 export const updateTaskSchema = {
@@ -26,22 +26,22 @@ export const updateTaskSchema = {
   required: ['title'],
   properties: {
     title: {
-      type: 'string',
+      type: 'string'
     },
     description: {
-      type: 'string',
+      type: 'string'
     },
     dueDate: {
       type: 'string',
-      format: 'date-time',
+      format: 'date-time'
     },
     priority: {
-      type: 'string',
+      type: 'string'
     },
     status: {
-      type: 'string',
-    },
-  },
+      type: 'string'
+    }
+  }
 }
 
 export const assignTaskSchema = {
@@ -49,9 +49,9 @@ export const assignTaskSchema = {
   required: ['userId'],
   properties: {
     userId: {
-      type: 'string',
-    },
-  },
+      type: 'string'
+    }
+  }
 }
 
 export const updateTaskStatusSchema = {
@@ -59,7 +59,7 @@ export const updateTaskStatusSchema = {
   required: ['status'],
   properties: {
     status: {
-      type: 'string',
-    },
-  },
+      type: 'string'
+    }
+  }
 }

@@ -3,27 +3,27 @@ import {
   Column,
   Model,
   DataType,
-  PrimaryKey,
-} from "sequelize-typescript";
+  PrimaryKey
+} from 'sequelize-typescript'
 
 @Table({
   timestamps: false,
-  tableName: "labels",
-  modelName: "Label",
+  tableName: 'labels',
+  modelName: 'Label'
 })
 export class Label extends Model {
   @PrimaryKey
   @Column({
     type: DataType.UUID,
-    defaultValue: DataType.UUIDV4,
+    defaultValue: DataType.UUIDV4
   })
-  declare id: string;
+  declare id: string
 
   @Column({
     type: DataType.STRING,
-    allowNull: false,
+    allowNull: false
   })
-  declare name: string;
+  declare name: string
 }
 
-export default Label;
+export default Label

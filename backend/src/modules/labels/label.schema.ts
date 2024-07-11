@@ -3,9 +3,9 @@ export const createLabelSchema = {
   required: ['name'],
   properties: {
     name: {
-      type: 'string',
-    },
-  },
+      type: 'string'
+    }
+  }
 }
 
 export const addLabelToTaskSchema = {
@@ -13,10 +13,10 @@ export const addLabelToTaskSchema = {
   required: ['taskId', 'labelId'],
   properties: {
     taskId: {
-      type: 'string',
+      type: 'string'
     },
     labelId: {
-      type: 'string',
-    },
-  },
-};
+      type: 'string'
+    }
+  }
+}

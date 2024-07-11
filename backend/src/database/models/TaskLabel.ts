@@ -7,49 +7,49 @@ import {
   UpdatedAt,
   PrimaryKey,
   BelongsTo,
-  ForeignKey,
-} from "sequelize-typescript";
-import { Task } from "./Task";
-import { Label } from "./Label";
+  ForeignKey
+} from 'sequelize-typescript'
+import { Task } from './Task'
+import { Label } from './Label'
 
 @Table({
   timestamps: true,
-  tableName: "task_labels",
-  modelName: "TaskLabel",
+  tableName: 'task_labels',
+  modelName: 'TaskLabel'
 })
 export class TaskLabel extends Model {
   @PrimaryKey
   @Column({
     type: DataType.UUID,
-    defaultValue: DataType.UUIDV4,
+    defaultValue: DataType.UUIDV4
   })
-  declare id: string;
+  declare id: string
 
   @ForeignKey(() => Task)
   @Column({
     type: DataType.UUID,
-    allowNull: false,
+    allowNull: false
   })
-  declare taskId: string;
+  declare taskId: string
 
   @BelongsTo(() => Task)
-  declare task: Task;
+  declare task: Task
 
   @ForeignKey(() => Label)
   @Column({
     type: DataType.UUID,
-    allowNull: false,
+    allowNull: false
   })
-  declare labelId: string;
+  declare labelId: string
 
   @BelongsTo(() => Label)
-  declare label: Label;
+  declare label: Label
 
   @CreatedAt
-  declare createdAt: Date;
+  declare createdAt: Date
 
   @UpdatedAt
-  declare updatedAt: Date;
+  declare updatedAt: Date
 }
 
-export default TaskLabel;
+export default TaskLabel
