@@ -107,7 +107,7 @@ $ docker compose up
 # Test the project Endpoints
 $ See Postman Section below
 
-# The server will initialize on the <http://localhost:3000>
+# The server will initialize on <http://localhost:3000>
 ```
 
 ### Postman
@@ -116,7 +116,7 @@ Download the Postman Collection and Import it.
 <a target="_blank" href="./Munch Backend.postman_collection.json" download="Postman.json">Download Collection</a> 
 Or View the "<b>Munch Backend.postman_collection.json</b>" file in the root directory. 
 
-## Testing#
+### Testing
 
 After setting up the Project:
 To Run Tests you can startup just the database or else the ports will conflict.
