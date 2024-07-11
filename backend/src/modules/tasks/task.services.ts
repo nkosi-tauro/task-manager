@@ -28,12 +28,16 @@ export async function getAllTasksBelongingToUser(userId: string) {
   }
 }
 
-export async function getAllTasks(){
+export async function getAllTasks(filters: any = {}, sort: any = {}) {
   try {
-    const tasks = Task.findAll();
+    const tasks = await Task.findAll({
+      where: {
+        ...filters,
+      },
+      order: [[sort.field || 'createdAt', sort.order || 'ASC']],
+    });
     return tasks;
-  }
-  catch (error) {
+  } catch (error) {
     throw new Error(`Error getting tasks: ${error}`);
   }
 }

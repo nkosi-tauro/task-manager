@@ -33,11 +33,25 @@ export async function getAllUserTasksHandler(request: FastifyRequest, reply: Fas
 // Gets all the created tasks regardless of user
 export async function getAllTasksHandler(request: FastifyRequest, reply: FastifyReply) {
   try {
-    const tasks = await getAllTasks();
+    const { status, sortBy, sortOrder } = request.query as any;
+
+    const filters = {};
+    if (status) {
+      (filters as any).status = status;
+    }
+
+    const sort = {};
+    if (sortBy) {
+      (sort as any).field = sortBy;
+    }
+    if (sortOrder) {
+      (sort as any).order = sortOrder;
+    }
+
+    const tasks = await getAllTasks(filters, sort);
     return reply.code(200).send(tasks);
-  }
-  catch (error) {
-    return reply.code(404).send({ error: "Tasks not found" });
+  } catch (error) {
+    return reply.code(500).send({ error: "Tasks not found" });
   }
 }
 
