@@ -120,15 +120,20 @@ Or View the "<b>Munch Backend.postman_collection.json</b>" file in the root dire
 
 ### Testing
 
-After setting up the Project:
+After setting up the Project:  
 To Run Tests you can startup just the database or else the ports will conflict.
 
 ```bash
+# (Only do this if you want to run tests)
+
 # Database Startup
 $ docker compose up db
 
 # Access
 $ cd backend
+
+# install packages 
+$ npm i
 
 # run tests
 $ npm test
