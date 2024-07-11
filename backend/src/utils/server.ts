@@ -1,7 +1,7 @@
 import fastify, { FastifyReply, FastifyRequest } from 'fastify'
 import { logger } from './logger'
 import userRoutes from '../modules/user/user.route'
-import fastifyPrintRoutes from 'fastify-print-routes'
+// import fastifyPrintRoutes from 'fastify-print-routes'
 import fastifyJwt from '@fastify/jwt'
 import taskRoutes from '../modules/tasks/task.route'
 import labelRoutes from '../modules/labels/label.route'
@@ -11,7 +11,7 @@ export async function createServer () {
     logger
   })
   // For Testing
-  await server.register(fastifyPrintRoutes)
+  // await server.register(fastifyPrintRoutes)
 
   // JWT
   server.register(fastifyJwt, {
