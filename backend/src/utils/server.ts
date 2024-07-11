@@ -3,11 +3,12 @@ import { logger } from "./logger";
 import userRoutes from "../modules/user/user.route";
 import fastifyPrintRoutes from "fastify-print-routes";
 import fastifyJwt from "@fastify/jwt";
-import taskRoutes  from "../modules/tasks/task.route";
+import taskRoutes from "../modules/tasks/task.route";
+import labelRoutes from "../modules/labels/label.route";
 
 export async function createServer() {
   const server = fastify({
-    logger,  
+    logger,
   });
   // For Testing
   await server.register(fastifyPrintRoutes)
@@ -33,7 +34,8 @@ export async function createServer() {
   //Routes
   server.register(userRoutes, { prefix: "/api/users" });
   server.register(taskRoutes, { prefix: "/api/tasks" });
-  
+  server.register(labelRoutes, { prefix: "/api/labels" });
+
   //Dummy Health check endpoint 
   server.get('/health', async () => {
     return { status: 'ok' };
