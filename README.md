@@ -17,6 +17,8 @@
 
   <img alt="License" src="https://img.shields.io/github/license/nkosi-tauro/task-manager?color=56BEB8">
 
+  [![JavaScript Style Guide](https://cdn.rawgit.com/standard/standard/master/badge.svg)](https://github.com/standard/standard)
+
   <!-- <img alt="Github issues" src="https://img.shields.io/github/issues/nkosi-tauro/task-manager?color=56BEB8" /> -->
 
   <!-- <img alt="Github forks" src="https://img.shields.io/github/forks/nkosi-tauro/task-manager?color=56BEB8" /> -->
